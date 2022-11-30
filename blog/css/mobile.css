@@ -1,0 +1,20 @@
+.panel-title  
+{
+    font-size: 1.5em !important;
+}
+
+body 
+{
+  font-size: 3.5em !important;
+}
+
+.btn, .form-control 
+{
+  font-size: 0.6em !important;
+}
+
+img 
+{
+  width: 100%;
+  max-width: 100%;
+}

@@ -1,0 +1,67 @@
+th {
+  background: white;
+  position: sticky;
+  top: 0;
+}
+
+A {text-decoration:none;}
+ A:hover {text-decoration:underline;}
+ body {
+      
+      }
+ 
+ .dirlist {
+        display:table-cell;
+        padding-right:40px;
+        margin-top:10px;
+        width:60%;
+		font-size:16px;
+        }
+
+ .filelist {
+        display:table-cell;
+        width:40%;
+        text-align:left;
+		font-size:16px;
+        }
+
+ .filedirtitle {
+        background-color: #7CFFCC;
+        border: 1px #006699 solid;
+        text-align:center;
+		
+        }
+
+ .bigblock {
+        display:table-cell;
+        padding:5px;
+        }
+
+ .contents, .unzip {
+        border: #FFFFFF 1px solid;
+        padding:5px;
+        height:auto;
+        width:100%;
+        position:relative;
+        font-family:Tahoma;
+        font-size:13px;
+        text-align:left;
+        }
+        
+ .unzip {
+        text-align:left;
+        margin-bottom: 20px;
+        background:#00DDDD;
+        }
+        
+ .heads {
+        position:relative;
+        font-family: Tahoma;
+        font-size:20px;
+        text-align:center;
+        padding:5px;
+        margin-bottom:20px;
+        width:100%;
+        clear:left;
+        }
+        

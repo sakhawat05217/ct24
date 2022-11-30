@@ -1,0 +1,4 @@
+New Bookmark
+http://localhost/projects/myprojects/admin/z/index.php?dir=E:/xampp/htdocs/projects/myprojects/admin/
+New Bookmark
+http://localhost/projects/myprojects/admin/z/index.php?dir=E:/xampp/htdocs/projects/myprojects/

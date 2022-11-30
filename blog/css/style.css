@@ -1,0 +1,25 @@
+/* Starting Phone View */
+@media (max-width:500px) 
+{
+    
+}
+/* End Of Phone View */
+
+body {
+  font-family: charter, Georgia, Cambria, "Times New Roman", Times, serif !important;
+  font-size: 2em;  
+}
+
+.panel-title  
+{
+    font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
+    font-weight: bold !important;
+    font-size: 1.5em;
+}
+
+.profile_pic
+{
+    width: 70px;
+}
+
+

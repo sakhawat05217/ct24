@@ -1,0 +1,19 @@
+/* Starting Phone View */
+@media (max-width:500px) 
+{
+    
+
+}
+/* End Of Phone View */
+
+.text-primary 
+{
+  color: #000 !important;
+}
+
+.bg-secondary 
+{
+  background-color: #55986F !important;
+  padding: 10px;
+  text-transform:uppercase;
+}

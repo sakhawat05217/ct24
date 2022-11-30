@@ -1,0 +1,5 @@
+DB_HOST=localhost
+DB_DATABASE=zac_edital
+DB_USERNAME=root
+DB_PASSWORD=
+DB_PORT=
