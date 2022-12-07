@@ -5,6 +5,11 @@
 }
 /* End Of Phone View */
 
+.panel-default > .panel-heading {
+  background-color: #FFF !important;
+  background-image: unset !important;
+}
+
 body {
   font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
   font-size: 2em;  
@@ -21,11 +26,12 @@ body {
 {
     font-family: sohne, "Helvetica Neue", Helvetica, Arial, sans-serif !important;
     font-size: 0.7em;
+    background-color: #FFF !important;
 }
 
 .profile_pic
 {
-    width: 70px;
+    width: 30px;
 }
 
 
