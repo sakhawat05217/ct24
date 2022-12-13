@@ -26,6 +26,25 @@
 }
 /* End Of Phone View */
 
+.modal-open 
+{ 
+    overflow-y: auto; 
+}
+
+.modal-dialog 
+{
+   position:fixed;
+   top:auto;
+   right:10px;
+   left:auto;
+   bottom:0;
+}
+
+.modal-header .close
+{
+    margin-right: -100px;
+}
+
 #canvas
 {
     height: 100px;

@@ -63,6 +63,8 @@ else
 	
 ?>
 
+
+
 <input type="hidden" value="<?= $extra_param ?>" id="extra_param">
 
     <div class="ajax_load" id="ajax_load">
@@ -131,6 +133,7 @@ else
 	 Updated about an hour ago
   </p> 
   
+    
 
 
 <?php
@@ -146,6 +149,7 @@ else
 	
     $link_title  = "Compare today's ". $send_country_arr['taka'] ." to ". $receive_country_arr['taka'] ." (". $send_country_tk ." to ". $receive_country_tk .") exchange rates";
     
+    //echo "<pre>"; print_r($providers);exit;
     
     if(count($providers)==0)
     {
@@ -213,6 +217,59 @@ else
    
   
 </div>
+ 
+        
+      
+ <!-- Button trigger modal -->
+<button type="button" id="show_social" style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#show_social_Modal">
+  Launch demo modal
+</button>
+        
+
+<!-- Modal -->
+<div class="modal fade" id="show_social_Modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" data-backdrop="false">
+  <div class="modal-dialog modal-sm" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">CT24</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <h4>CT24 helps average user save <?= $receive_country_arr['taka'] ?> <?= set_comma($providers[0]['received_amount']*12) ?> per year. <a href="blog/posts/post.php?id=26">How?</a></h4>
+        <br>
+        <h5>Help your friends by sharing CT24 with them. </h5>
+         <br>
+          
+          <div align="center">
+        <!-- Facebook Social Media -->
+        <a target="_blank" href="http://www.facebook.com/sharer.php?u=<?=$link_url?>">
+            <img src="img/social/facebook.png" alt="Facebook share link" />
+        </a>
+
+
+        <!-- Twitter Social Media -->
+        <a target="_blank" href="https://twitter.com/share?url=<?=$link_url?>&amp;text=Simple%20Share%20Buttons&amp;hashtags=simplesharebuttons">
+            <img src="img/social/twitter.png" alt="Twitter share link" />
+        </a>
+
+        <!-- LinkedIn Social Media -->
+        <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?=$link_url?>">
+            <img src="img/social/linkedin.png" alt="LinkedIn share link" />
+        </a>
+              
+        </div>
+
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>        
+        
     
    <?php
     }
@@ -501,3 +558,9 @@ else
 include("pages/footer.php");	
 ?>
 <script src="js/chart.js"></script>
+
+<script>
+    
+ $('#show_social').click();
+
+</script>
