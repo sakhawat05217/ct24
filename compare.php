@@ -561,6 +561,25 @@ include("pages/footer.php");
 
 <script>
     
- $('#show_social').click();
+var my_message = getCookie('show_message');
+    
+//console.log("Message: ",my_message);
+
+if(my_message=="")
+    {
+        //console.log("yes");
+        setCookie('show_message', "on", 1);
+        
+        setTimeout(function showme()
+        {
+            $('#show_social').click();
+
+        },10000);
+    }
+else
+    {
+        //console.log("no");
+    }    
+ 
 
 </script>
