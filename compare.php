@@ -218,7 +218,20 @@ else
   
 </div>
  
-        
+<?php
+ 
+$my_root_rate = get_current_rate(1,'US','IN');
+if($receive_country=='IN')
+{
+    $my_save_rate = '50,000.00';
+}
+else 
+{
+    $my_new_rate = get_current_rate(1,$receive_country,'IN');
+    $my_save_rate = set_comma(intval((50000*$my_new_rate)/$my_root_rate)).".00";
+}
+
+?>
       
  <!-- Button trigger modal -->
 <button type="button" id="show_social" style="display: none;" class="btn btn-primary" data-toggle="modal" data-target="#show_social_Modal">
@@ -237,7 +250,7 @@ else
         </button>
       </div>
       <div class="modal-body">
-        <h4>CT24 helps average user save <?= $receive_country_arr['taka'] ?> <?= set_comma($providers[0]['received_amount']*12) ?> per year. <a href="blog/posts/post.php?id=26">How?</a></h4>
+        <h4>CT24 helps average user save <?= $receive_country_arr['taka'] ?> <?= $my_save_rate ?> per year. <a href="blog/posts/post.php?id=26">How?</a></h4>
         <br>
         <h5>Help your friends by sharing CT24 with them. </h5>
          <br>
