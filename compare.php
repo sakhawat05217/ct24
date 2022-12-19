@@ -228,7 +228,7 @@ if($receive_country=='IN')
 else 
 {
     $my_new_rate = get_current_rate(1,'US',$receive_country);
-    $my_save_rate = set_comma(intval((50000*$my_new_rate)/$my_root_rate)).".00";
+    $my_save_rate = set_comma(round(floatval((50000*$my_new_rate)/$my_root_rate),2));
 }
 
 ?>

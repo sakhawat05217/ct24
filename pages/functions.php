@@ -575,7 +575,15 @@ function save_log($parameter_name,$parameter_value, $info)
 
 function set_comma($price)
 {
-    $price = intval($price);
+    $arr_price = explode(".",$price);
+    
+    if(@$arr_price[1]!=null) 
+    {
+        $float_val = $arr_price[1];
+    }
+    else $float_val = "00";
+    
+    $price = intval($arr_price[0]);
     $negative = 0;
     if($price<0)
     {
@@ -604,6 +612,8 @@ function set_comma($price)
 
     
     if($negative) $new_price = '-'.$new_price;
+    
+    $new_price = $new_price.".".$float_val;
  
     return $new_price;
 }
