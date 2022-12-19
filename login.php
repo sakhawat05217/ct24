@@ -64,7 +64,8 @@ if(isset($_COOKIE['ct_username']))
 				    if(mysqli_error($link)) echo mysqli_error($link); 
                 }
                     
-                setcookie("ct_username",$email,time()+360*60*60);
+                setcookie("ct_username",$email,24*60*60*1000);
+                
                 $_SESSION['ct_myuser'] = $email;
                 
                 $_SESSION['username']=$_SESSION['ct_myuser'];
@@ -147,7 +148,7 @@ if(isset($_COOKIE['ct_username']))
 							{
 								$remember = $_POST['remember'];
 								$email = $_POST['email'];
-								setcookie("ct_username",$email,time()+360*60*60);
+								setcookie("ct_username",$email,24*60*60*1000);
 								//echo $_COOKIE['username'];
 							}	
 	
@@ -183,7 +184,7 @@ if(isset($_COOKIE['ct_username']))
                     
                   </div>
                  
-                    <div class="g-signin2" data-width="300" data-onsuccess="onSignIn" data-longtitle="true"></div>
+                    <div onClick="setCookie('gmail_username', 'on', 1);" class="g-signin2" data-width="300" data-onsuccess="onSignIn" data-longtitle="true"></div>
                     
                  
                     <h3>OR</h3>
@@ -243,7 +244,21 @@ function onSignIn(googleUser) {
   //console.log('Name: ' + profile.getName());
   //console.log('Image URL: ' + profile.getImageUrl());
   //console.log('Email: ' + profile.getEmail()); 
-  window.location='?my_email='+ profile.getEmail()+'&my_name='+ profile.getName();  
+    
+  var username = getCookie('gmail_username');
+    
+    //console.log("username: ",username);
+
+    if(username=="")
+        {
+            //console.log("No");
+        }
+    else
+        {
+            window.location='?my_email='+ profile.getEmail()+'&my_name='+ profile.getName();
+            //console.log("Yes");
+        }   
+
 }
 </script>
 
