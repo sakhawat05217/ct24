@@ -8,6 +8,7 @@ include("pages/functions.php");
 
 <script>
 setCookie('gmail_username', '', 1);
+setCookie('ct_username', '', 1);    
 </script>
 
 <?php
@@ -21,7 +22,9 @@ $info = "$user_name has been logged out. $ip_data, $ip";
 save_log('Logout',$server, $info);
 
 unset($_SESSION['ct_myuser']); //clearing cache
-setcookie("ct_username",'',0);
+unset($_COOKIE['ct_username']); //clearing cache
+setcookie("ct_username",'', 0);
+//echo "User: ".$_COOKIE['ct_username']; exit;
 echo "<script>window.location='index.php';</script>"; 
 
 ?>

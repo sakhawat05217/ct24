@@ -442,14 +442,14 @@ function get_user_link($user_name)
 
 function is_admin()
 {
-	include("config.php");
+    include("config.php");
 	$email = $_SESSION['ct_myuser'];
 	$sql= 'select * from ct_users WHERE email = "' . $email . '"';
 	$result = mysqli_query($link,$sql);
 	$data = mysqli_fetch_array($result);
-	$user=0;
-    if($data['role']==0) $user=1;
-	return $user;
+ 	$user=0;
+    if(@$data['role']==0) $user=1;
+ 	return $user;
 }
 
 function get_web($alias)

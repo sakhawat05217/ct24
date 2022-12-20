@@ -6,10 +6,20 @@ $ref = isset($_REQUEST['ref'])?$_REQUEST['ref']:'index.php';
 $user_name = 'Guest';
 
 $ip = get_ip_link(get_client_ip());
+
 $server = $_SERVER['HTTP_HOST'];
 $ip_data = get_ip_data();
 
-if(isset($_COOKIE['ct_username']))
+
+if(isset($_POST['remember']))
+{
+    $email = $_POST['email'];
+    setcookie("ct_username",$email, time() + (86400 * 30));
+}
+
+
+
+if((isset($_COOKIE['ct_username']))&&($_COOKIE['ct_username']!=''))
  {
     $_SESSION['ct_myuser'] = $_COOKIE['ct_username'];
     
@@ -18,15 +28,12 @@ if(isset($_COOKIE['ct_username']))
     $info = "$user_name has been logged in. $ip_data, $ip";
     save_log('Login',$server, $info);
     
-    if(is_admin()) $ref = 'ctadmin';
-    
-  echo "<script>window.location='".$ref."';</script>";
+    if(is_admin()) {$ref = 'ctadmin';}
+   
+    echo "<script>window.location='".$ref."';</script>";
  }
-
+ 
 ?>
-
-
-<meta name="google-signin-client_id" content="610198069749-np8149grr5fo7bv6o1778824tldqcq5d.apps.googleusercontent.com">
 
 
 <div class="bg-secondary page-header">
@@ -36,7 +43,9 @@ if(isset($_COOKIE['ct_username']))
         </h1>
     </div>
 </div>
- 
+<?php
+//echo "User: ".$_COOKIE['ct_username']; exit;
+?>
 <div class="container">
 
       <section class="section register d-flex flex-column align-items-center justify-content-center py-4">
@@ -63,8 +72,6 @@ if(isset($_COOKIE['ct_username']))
 				
 				    if(mysqli_error($link)) echo mysqli_error($link); 
                 }
-                    
-                setcookie("ct_username",$email,24*60*60*1000);
                 
                 $_SESSION['ct_myuser'] = $email;
                 
@@ -144,13 +151,7 @@ if(isset($_COOKIE['ct_username']))
 	
 					if( $dbpass == $password ){
 						
-						if(isset($_POST['remember']))
-							{
-								$remember = $_POST['remember'];
-								$email = $_POST['email'];
-								setcookie("ct_username",$email,24*60*60*1000);
-								//echo $_COOKIE['username'];
-							}	
+							
 	
 					  $_SESSION['ct_myuser'] = $email;
                      
@@ -161,7 +162,7 @@ if(isset($_COOKIE['ct_username']))
                       $info = "$user_name has been logged in. $ip_data, $ip";
                       save_log('Login',$server, $info);  
                       if(is_admin()) $ref = 'ctadmin';  
-					  echo "<script>window.location='".$ref."';</script>";
+				      echo "<script>window.location='".$ref."';</script>";
 	
 					}else{
 					  echo "Invalid password for $email.";
@@ -170,6 +171,8 @@ if(isset($_COOKIE['ct_username']))
 			}
 			?>
          </div>
+            
+            <meta name="google-signin-client_id" content="610198069749-np8149grr5fo7bv6o1778824tldqcq5d.apps.googleusercontent.com">
          
           <div class="row justify-content-center">
             <div class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center">
