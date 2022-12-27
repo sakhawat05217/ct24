@@ -1,3 +1,24 @@
+function my_copy_link() {
+  var copyText = document.getElementById("copy_url");
+  copyText.select();
+  copyText.setSelectionRange(0, 99999);
+  navigator.clipboard.writeText(copyText.value);
+  
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copied: " + copyText.value;
+    
+  var tooltip_two = document.getElementById("myTooltip_two");
+  tooltip_two.innerHTML = "Copied: " + copyText.value;    
+}
+
+function my_copy_link_out() {
+  var tooltip = document.getElementById("myTooltip");
+  tooltip.innerHTML = "Copy to clipboard";
+    
+  var tooltip_two = document.getElementById("myTooltip_two");
+  tooltip_two.innerHTML = "Copy to clipboard";    
+}
+
 function setCookie(cname, cvalue, exdays) {
   const d = new Date();
   d.setTime(d.getTime() + (exdays*24*60*60*1000));

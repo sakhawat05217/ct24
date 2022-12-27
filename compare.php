@@ -214,6 +214,20 @@ else
     <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?=$link_url?>">
         <img src="img/social/linkedin.png" alt="LinkedIn share link" />
     </a>
+        
+        
+    <!-- Whatsapp Social Media -->
+    <a target="_blank" href="https://api.whatsapp.com/send?text=<?=$link_url?>">
+        <img src="img/social/whatsapp.png" alt="Whatsapp share link" />
+    </a>    
+        
+    <input type="text" value="<?=$link_url?>" id="copy_url">
+
+    <div class="my_copy_tooltip" onclick="my_copy_link()" onmouseout="my_copy_link_out()" >
+      <span class="my_copy_tooltiptext" id="myTooltip">Copy to clipboard</span>
+      <img alt="Copy" src="img/social/copy.png">
+    </div>    
+      
    
   
 </div>
@@ -223,12 +237,13 @@ else
 $my_root_rate = get_current_rate(1,'US','IN');
 if($receive_country=='IN')
 {
-    $my_save_rate = '50,000.00';
+    $my_save_rate = '50,000';
 }
 else 
 {
     $my_new_rate = get_current_rate(1,'US',$receive_country);
-    $my_save_rate = set_comma(round(floatval((50000*$my_new_rate)/$my_root_rate),2));
+    $my_save_rate = set_comma(intval((50000*$my_new_rate)/$my_root_rate));
+    $my_save_rate = substr($my_save_rate,0,strlen($my_save_rate)-3);
 }
 
 ?>
@@ -271,6 +286,16 @@ else
         <a target="_blank" href="http://www.linkedin.com/shareArticle?mini=true&amp;url=<?=$link_url?>">
             <img src="img/social/linkedin.png" alt="LinkedIn share link" />
         </a>
+              
+       <!-- Whatsapp Social Media -->
+        <a target="_blank" href="https://api.whatsapp.com/send?text=<?=$link_url?>">
+            <img src="img/social/whatsapp.png" alt="Whatsapp share link" />
+        </a>  
+              
+        <div class="my_copy_tooltip" onclick="my_copy_link()" onmouseout="my_copy_link_out()" >
+          <span class="my_copy_tooltiptext" id="myTooltip_two">Copy to clipboard</span>
+          <img alt="Copy" src="img/social/copy.png">
+        </div>       
               
         </div>
 

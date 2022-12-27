@@ -162,7 +162,7 @@ Show data for the days:
 <input type="button" value="Refresh" class="btn btn-success" onclick="window.location.href='status.php'" /> 
 <br /><br />
     
-<h1 align="center">Total New Users: <?= $total_new_users ?>, Search Users: <?= $total_history_users ?></h1>  
+<h1 align="center">Total New Users: <?= $total_new_users ?>, Search Hits: <?= $total_history_users ?></h1>  
     
 
 
@@ -173,7 +173,7 @@ Show data for the days:
 <?php
 
 
-echo '<div class="container-fluid"><div class="row"><div class="col-xl-1">#</div><div class="col-xl-1">Date</div><div class="col-xl-1">New Users</div><div class="col-xl-2">Based On Country</div><div class="col-xl-2">Search History Users</div><div class="col-xl-2">Based On Country</div></div><br>';
+echo '<div class="container-fluid"><div class="row"><div class="col-xl-1">#</div><div class="col-xl-1">Date</div><div class="col-xl-1">New Users</div><div class="col-xl-2">Based On Country</div><div class="col-xl-2">Search Hits</div><div class="col-xl-2">Based On Country</div></div><br>';
 
   
 for($i=0;$i<$day_limit;$i++)
