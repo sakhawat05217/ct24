@@ -205,6 +205,7 @@ if(isset($_GET['sav']))
     $my_logo = $_GET['my_logo']; 
     $speed = $_GET['speed']; 
 	$rid = $_GET['sav'];
+    $status = $_GET['st'];
 	
 	$sql= "update ct_provider set
 	name = '$name',
@@ -212,6 +213,7 @@ if(isset($_GET['sav']))
 	link = '$my_link',
     logo = '$my_logo',
     speed = '$speed',
+    status = '$status',
 	updated_at = '$date'
 	where id=$rid ";
 	
@@ -241,6 +243,7 @@ if((isset($_GET['s_str']))and(!empty($_GET['s_str'])))
 		case 'lid': $sr_type = 'link'; break;
         case 'loid': $sr_type = 'logo'; break;  
         case 'spid': $sr_type = 'speed'; break;    
+        case 'stid': $sr_type = 'status'; break;    
 	}
 	
 	
@@ -317,6 +320,7 @@ Search Provider By:
     <option value="lid" <?= ($sid=='lid')? ' selected="selected" ':'' ?>>Link</option>
     <option value="loid" <?= ($sid=='loid')? ' selected="selected" ':'' ?>>Logo</option>
     <option value="spid" <?= ($sid=='spid')? ' selected="selected" ':'' ?>>Speed of Remittance</option>
+    <option value="stid" <?= ($sid=='stid')? ' selected="selected" ':'' ?>>Status</option>
 </select>
 <input type="text" size="40" value="<?= $s_str ?>" style="text-align:center;" name="s_str" id="s_str" />
 <input type="button" value="Search" class="btn btn-primary" onclick="search_sid()" />
@@ -378,13 +382,14 @@ Display providers per page:
 <?php
 
 
-echo '<div class="container-fluid"><div class="row"><div class="col-xl-1">#</div><div class="col-xl-2">'.get_column('name',
+echo '<div class="container-fluid"><div class="row"><div class="col-xl-1">#</div><div class="col-xl-1">'.get_column('name',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('alias',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-2">'.get_column('link',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('logo',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('speed',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('updated_at',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('id',
+$sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('status',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-2">Action</div></div><br>';
 
 
@@ -393,7 +398,10 @@ for($j=$low_limit; $j<=$high_limit; $j++)
 	$my_select='';
 	$new_data = $data[$j];
 	echo '<div class="row">';
-	echo '<div class="col-xl-1">'.($j+1).'</div><div class="col-xl-2"><input id="'.$new_data[0].'_name" type="text" class="form-control" value="'.$new_data[1].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_alias" type="text" class="form-control" value="'.$new_data[2].'" /></div><div class="col-xl-2"><input id="'.$new_data[0].'_link" type="text" class="form-control" value="'.$new_data[3].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_logo" type="text" class="form-control" value="'.$new_data[4].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_speed" type="text" class="form-control" value="'.$new_data[5].'" /></div><div class="col-xl-1">'.$new_data[8].'</div><div class="col-xl-1">'.$new_data[0].'</div>';
+	echo '<div class="col-xl-1">'.($j+1).'</div><div class="col-xl-1"><input id="'.$new_data[0].'_name" type="text" class="form-control" value="'.$new_data[1].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_alias" type="text" class="form-control" value="'.$new_data[2].'" /></div><div class="col-xl-2"><input id="'.$new_data[0].'_link" type="text" class="form-control" value="'.$new_data[3].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_logo" type="text" class="form-control" value="'.$new_data[4].'" /></div><div class="col-xl-1"><input id="'.$new_data[0].'_speed" type="text" class="form-control" value="'.$new_data[5].'" /></div><div class="col-xl-1">'.$new_data[8].'</div><div class="col-xl-1">'.$new_data[0].'</div>';
+    
+    if($new_data[9]=='inactive') $my_select='selected="selected"';
+	echo '<div class="col-xl-1"><select name="status" id="'.$new_data[0].'_status"><option value="active">Active</option><option value="inactive" '.$my_select.'>Inactive</option></select></div>';
 
 	echo '<div class="col-xl-2"><input class="btn btn-success" type="button" value="Save" onclick="save_provider('.$new_data[0].')" /> <input type="button" class="btn btn-danger" value="Delete" onclick="delete_provider('.$new_data[0].')" /></div>';
 	
@@ -448,7 +456,8 @@ function save_provider(rid)
 		var my_link = $('#'+rid+'_link').val();
         var my_logo = $('#'+rid+'_logo').val();
         var speed = $('#'+rid+'_speed').val();
-		window.location.href='provider.php?p=<?= $current_page ?>&li=<?= $row_limit ?>&s_type=<?= $s_type ?>&s_order=<?= $s_order ?>&sid=<?= $sid ?>&s_str=<?= $s_str ?>&sav='+rid+'&name='+name+'&alias='+alias+'&my_link='+my_link+'&my_logo='+my_logo+'&speed='+speed;
+        var status = $('#'+rid+'_status').val();
+		window.location.href='provider.php?p=<?= $current_page ?>&li=<?= $row_limit ?>&s_type=<?= $s_type ?>&s_order=<?= $s_order ?>&sid=<?= $sid ?>&s_str=<?= $s_str ?>&sav='+rid+'&name='+name+'&alias='+alias+'&my_link='+my_link+'&my_logo='+my_logo+'&speed='+speed+'&st='+status;
 		
 	}
 }

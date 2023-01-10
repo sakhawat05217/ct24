@@ -56,6 +56,18 @@ function check_ip($ip)
 	return $get_ip;
 }
 
+function check_provider($alias)
+{
+	include("config.php");
+	
+	$sql= 'select * from ct_provider WHERE alias = "' . $alias . '" and status="active"';
+	$result = mysqli_query($link,$sql);
+	$data = mysqli_fetch_array($result);
+	$provider=0;
+    if($data!==null) $provider=1;
+	return $provider;
+}
+
 function check_user($email)
 {
 	include("config.php");
@@ -290,37 +302,40 @@ function get_providers($send_amount,$send_country,$receive_country)
     foreach ($my_data->providers as $pd)
     {
         $alias = $pd->alias;
-        $provider_data[$i]['id'] = 0;
-        $provider_data[$i]['speed'] = '4-5 business days';
-        $provider_data[$i]['alias'] = $alias;
-        $provider_data[$i]['rate'] = $pd->quotes[0]->rate;
-        $provider_data[$i]['fee'] = $pd->quotes[0]->fee;
-        $rate_arr[$i] = $provider_data[$i]['received_amount'] = $pd->quotes[0]->receivedAmount;
-        
-        $web_link='https://wise.com';
-        $new_data = get_web($alias);
-        if(!empty($new_data['link'])) 
+        if(check_provider($alias))
         {
-            $web_link=$new_data['link'];
-            $provider_data[$i]['id'] = $new_data['id'];
-            $provider_data[$i]['speed'] = $new_data['speed'];
-        }
-        $provider_data[$i]['web'] = $web_link;
+            $provider_data[$i]['id'] = 0;
+            $provider_data[$i]['speed'] = '4-5 business days';
+            $provider_data[$i]['alias'] = $alias;
+            $provider_data[$i]['rate'] = $pd->quotes[0]->rate;
+            $provider_data[$i]['fee'] = $pd->quotes[0]->fee;
+            $rate_arr[$i] = $provider_data[$i]['received_amount'] = $pd->quotes[0]->receivedAmount;
 
-        if($alias=='aspire-bank') 
-        {
-            $my_link = "<a href='$web_link' target='_blank'>link</a>";
-            $provider_data[$i]['web_info'] = "* Business Users Only.</br>Open account using this $my_link to recieve awards. E-mail <a href='mailto:support@ct-24.com'>support@ct-24.com</a> after account is opened.";
-            $provider_data[$i]['active_class'] = 'provider_active';
+            $web_link='https://wise.com';
+            $new_data = get_web($alias);
+            if(!empty($new_data['link'])) 
+            {
+                $web_link=$new_data['link'];
+                $provider_data[$i]['id'] = $new_data['id'];
+                $provider_data[$i]['speed'] = $new_data['speed'];
+            }
+            $provider_data[$i]['web'] = $web_link;
+
+            if($alias=='aspire-bank') 
+            {
+                $my_link = "<a href='$web_link' target='_blank'>link</a>";
+                $provider_data[$i]['web_info'] = "* Business Users Only.</br>Open account using this $my_link to recieve awards. E-mail <a href='mailto:support@ct-24.com'>support@ct-24.com</a> after account is opened.";
+                $provider_data[$i]['active_class'] = 'provider_active';
+            }
+            else 
+            {    
+                $provider_data[$i]['web_info'] = '';
+                $provider_data[$i]['active_class'] = '';
+            }
+
+            $provider_data[$i]['png_logo'] = $pd->logos->normal->pngUrl;
+            $i++;
         }
-        else 
-        {    
-            $provider_data[$i]['web_info'] = '';
-            $provider_data[$i]['active_class'] = '';
-        }
-        
-        $provider_data[$i]['png_logo'] = $pd->logos->normal->pngUrl;
-        $i++;
     }
 		
     

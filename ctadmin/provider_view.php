@@ -122,10 +122,11 @@ Display providers per page:
 
 echo '<div class="container-fluid"><div class="row"><div class="col-xl-1">#</div><div class="col-xl-2">'.get_column('logo',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-2">'.get_column('name',
-$sid,$s_str,$row_limit).'</div><div class="col-xl-2">'.get_column('alias',
+$sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('alias',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-2">'.get_column('link',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('id',
 $sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('speed',
+$sid,$s_str,$row_limit).'</div><div class="col-xl-1">'.get_column('status',
 $sid,$s_str,$row_limit).'</div></div><br>';
 
 
@@ -134,7 +135,7 @@ for($j=$low_limit; $j<=$high_limit; $j++)
 	$my_select='';
 	$new_data = $data[$j];
 	echo '<div class="row">';
-	echo '<div class="col-xl-1">'.($j+1).'</div><div class="col-xl-2"><img  width="150px" src="'.$new_data[4].'" alt="logo" title="'.$new_data[4].'" /></div><div class="col-xl-2">'.$new_data[1].'</div><div class="col-xl-2">'.$new_data[2].'</div><div class="col-xl-2"><a href="'.$new_data[3].'" target="_blank">'.$new_data[1].' </a></div><div class="col-xl-1">'.$new_data[0].'</div><div class="col-xl-1">'.$new_data[5].'</div>';
+	echo '<div class="col-xl-1">'.($j+1).'</div><div class="col-xl-2"><img  width="150px" src="'.$new_data[4].'" alt="logo" title="'.$new_data[4].'" /></div><div class="col-xl-2">'.$new_data[1].'</div><div class="col-xl-1">'.$new_data[2].'</div><div class="col-xl-2"><a href="'.$new_data[3].'" target="_blank">'.$new_data[1].' </a></div><div class="col-xl-1">'.$new_data[0].'</div><div class="col-xl-1">'.$new_data[5].'</div><div class="col-xl-1">'.$new_data[9].'</div>';
 	
 	echo "</div><br>";
 }
